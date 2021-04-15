@@ -6,8 +6,7 @@ type: streamed
 author: DNIF
 blocks:
 - type: sql
-  query: SELECT $System FROM SYSMON-PROCESS
-    WHERE $ParentImage LIKE '%spoolsv.exe' AND $Image NOT LIKE '%regsvr32.exe%' GROUP BY $System
+  query: SELECT $System FROM SYSMON-PROCESS WHERE $ParentImage LIKE "%spoolsv%exe%" AND $Image NOT LIKE "%regsvr32%exe%" GROUP BY $System
 - type: signal
   DetectionName: Child Processes of Spoolsv exe
   DetectionTactic: Privilege Escalation

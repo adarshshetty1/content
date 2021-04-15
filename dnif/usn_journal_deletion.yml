@@ -6,7 +6,7 @@ type: streamed
 author: DNIF
 blocks:
 - type: sql
-  query: SELECT $System FROM SYSMON-PROCESS WHERE $Image LIKE '%fsutil.exe' AND $Commandline LIKE '%deletejournal%usn%' GROUP BY $System
+  query: SELECT $System FROM SYSMON-PROCESS WHERE $Image LIKE "%fsutil.exe" AND $Commandline LIKE "%usn%deletejournal%" GROUP BY $System
 - type: signal
   DetectionName: USN Journal Deletion
   DetectionTactic: Defense Evasion
