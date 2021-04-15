@@ -1,0 +1,18 @@
+id: dc602a02750541418522658c931c2790
+name: Threat Detected on Suspicious File - Host
+path: /Operation
+description: ''
+type: auto-scheduled
+author: DNIF
+blocks:
+- type: sql
+  query: SELECT $Threat, $System, $File FROM THREAT WHERE $Vector='HOST' AND $Action='THREAT_DETECTED'
+    GROUP BY $Threat, $System, $File
+- type: signal
+  DetectionName: _$Threat_
+  DetectionTactic: Execution
+  DetectionTechnique: User Execution
+  DetectionScore: '5'
+  DetectionSeverity: Medium
+  DetectionConfidence: Medium
+  TargetHost: $System
