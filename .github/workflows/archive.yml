@@ -1,0 +1,16 @@
+name: Archive Creation
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repositoryssss
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 0
+      - run: |
+          echo "Target Branch $GITHUB_HEAD_REF"
+          echo "Source Branch $GITHUB_BASE_REF"
