@@ -1,5 +1,5 @@
 id: fc7add6fe993469e8d7efc79ee6fbafd
-name: Cobalt Strike DNS Beaconing
+name: Cobalt Strike DNS Beaconing (Modified)
 path: /Advanced Threat Detection/DNS Monitoring
 description: Detects suspicious DNS queries known from Cobalt Strike beacons
 type: standard

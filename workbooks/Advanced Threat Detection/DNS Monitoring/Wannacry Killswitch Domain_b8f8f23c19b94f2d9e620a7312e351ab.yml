@@ -1,5 +1,5 @@
 id: b8f8f23c19b94f2d9e620a7312e351ab
-name: Wannacry Killswitch Domain
+name: Wannacry Killswitch Domain (Modified)
 path: /Advanced Threat Detection/DNS Monitoring
 description: Detects wannacry killswitch domain dns queries
 type: standard
