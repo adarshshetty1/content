@@ -12,5 +12,5 @@ jobs:
         with:
           fetch-depth: 0
       - run: |
-          git diff $GITHUB_HEAD_REF $GITHUB_BASE_REF --name-only | grep -E 'dashboards|reports|workbooks' > diff.txt
+          git diff $GITHUB_HEAD_REF...$GITHUB_BASE_REF --name-only | grep -E 'dashboards|reports|workbooks' > diff.txt
           cat diff.txt
