@@ -12,5 +12,5 @@ jobs:
         with:
           fetch-depth: 0
       - run: |
-          echo "Target Branch $GITHUB_HEAD_REF"
-          echo "Source Branch $GITHUB_BASE_REF"
+          git diff $GITHUB_HEAD_REF $GITHUB_BASE_REF --name-only | grep -E 'dashboards|reports|workbooks' > diff.txt
+          cat diff.txt
