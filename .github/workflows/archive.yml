@@ -20,12 +20,9 @@ jobs:
           echo "Checkout done"
           git diff origin/$GITHUB_BASE_REF...origin/$GITHUB_HEAD_REF --name-only | grep -E 'dashboards|reports|workbooks' > diff.txt
           echo "Diff file created"
-      - name: Check If there is diff
-        if: steps.diff_check.outcome != 'success'
-        run: |
-          echo "No diff found!"
-          exit 0
       - name: Creating directories
+        id: create_dir
+        if: steps.diff_check.outcome == 'success'
         run : |
           if grep -q workbooks/ "diff.txt"; then
             mkdir -p archives/workbooks;
@@ -37,6 +34,8 @@ jobs:
             mkdir -p archives/reports;
           fi
       - name: Moving diff files
+        id: mv_dir
+        if: steps.create_dir.outcome == 'success'
         run: |
           IFS=''
           while read line; do
@@ -51,6 +50,8 @@ jobs:
             fi
           done < diff.txt
       - name: Archiving directories
+        id: archv_dir
+        if: steps.mv_dir.outcome == 'success'
         run: |
           cd archives
           if [ -d "workbooks" ]
@@ -66,6 +67,7 @@ jobs:
               tar czf reports.tar.gz reports/ && rm -r reports
           fi
       - name: Upload content archives
+        if: steps.archv_dir.outcome == 'success'
         uses: actions/upload-artifact@v2
         with:
           name: content
