@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@master
+        uses: actions/checkout@${{ github.head_ref }}
         with:
           fetch-depth: 0
       - name: Finding diff
@@ -54,4 +54,4 @@ jobs:
           then
               tar czf reports.tar.gz reports/ && rm -r reports
           fi
-          ll -h
+          ls -lh
