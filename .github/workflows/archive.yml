@@ -13,8 +13,11 @@ jobs:
           fetch-depth: 0
       - name: Finding diff
         run: |
+          echo "Checking out"
           git checkout origin/$GITHUB_HEAD_REF
+          echo "Checkout done"
           git diff origin/$GITHUB_BASE_REF...origin/$GITHUB_HEAD_REF --name-only | grep -E 'dashboards|reports|workbooks' > diff.txt
+          echo "Diff file created"
       - name: Creating directories
         run : |
           if grep -q workbooks/ "diff.txt"; then
