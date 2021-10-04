@@ -2,7 +2,7 @@ name: Archive Creation
 on:
   pull_request:
     branches:
-      - main
+      - master
 jobs:
   archive:
     runs-on: ubuntu-latest
