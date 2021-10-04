@@ -12,12 +12,19 @@ jobs:
         with:
           fetch-depth: 0
       - name: Finding diff
+        id: diff_check
+        continue-on-error: true
         run: |
           echo "Checking out"
           git checkout origin/$GITHUB_HEAD_REF
           echo "Checkout done"
           git diff origin/$GITHUB_BASE_REF...origin/$GITHUB_HEAD_REF --name-only | grep -E 'dashboards|reports|workbooks' > diff.txt
           echo "Diff file created"
+      - name: Check If there is diff
+        if: steps.diff_check.outcome != 'success'
+        run: |
+          echo "No diff found!"
+          exit 0
       - name: Creating directories
         run : |
           if grep -q workbooks/ "diff.txt"; then
