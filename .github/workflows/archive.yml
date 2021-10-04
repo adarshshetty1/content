@@ -56,3 +56,8 @@ jobs:
               tar czf reports.tar.gz reports/ && rm -r reports
           fi
           ls -lh
+      - name: Upload content archives
+        uses: actions/upload-artifact@v2
+        with:
+          name: content
+          path: archives/*
