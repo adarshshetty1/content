@@ -31,7 +31,7 @@ jobs:
             if [[ $line == "workbooks/"* ]]; then
               mv $line archives/workbooks
             elif [[ $line == "dashboards/"* ]]; then
-              mv line archives/dashboards
+              mv $line archives/dashboards
             elif [[ $line == "reports/"* ]]; then
               mv $line archives/reports
             else
